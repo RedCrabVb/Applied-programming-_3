@@ -60,7 +60,7 @@ public class Main1 extends Application {
         button.setTranslateX(200);
         button.setTranslateY(200);
         button.setPrefSize(60, 60);
-        
+
 
         List<Label> labels = new ArrayList<>();
         labels.add(CreateLabeled.createLabel(10, 10, 50, 50, "label1"));
