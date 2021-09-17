@@ -4,29 +4,30 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sampleMain.fxml"));
-        Parent root = fxmlLoader.load();
-        Controller controller = (Controller) fxmlLoader.getController();
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 550, 450));
+        FXMLLoader fxmlLoaderSampleMain = new FXMLLoader(getClass().getResource("../fxml/sampleMain.fxml"));
+        Parent rootStart = fxmlLoaderSampleMain.load();
+        Controller controllerSampleMain = (Controller) fxmlLoaderSampleMain.getController();
+        primaryStage.setTitle("constructor test");
+        primaryStage.setScene(new Scene(rootStart, 480, 340));
         primaryStage.show();
 
-        FXMLLoader fxmlLoader2 =  new FXMLLoader(getClass().getResource("createrTest.fxml"));
-        Parent root2 = fxmlLoader2.load();
-        Scene secondScene = new Scene(root2, 550, 450);
-        controller.setScene(secondScene);
+        FXMLLoader fxmlLoaderCreateTest =  new FXMLLoader(getClass().getResource("../fxml/createrTest.fxml"));
+        Parent rootCreateTest = fxmlLoaderCreateTest.load();
+        ControllerCreaterTest controllerCreaterTest = (ControllerCreaterTest) fxmlLoaderCreateTest.getController();
+        Scene sceneCreateTest = new Scene(rootCreateTest, 560, 410); //name 'constructor test' for variable better
 
+        FXMLLoader fxmlLoaderResultEdit = new FXMLLoader(getClass().getResource("../fxml/resultEdit.fxml"));
+        Parent rootResultEdit = fxmlLoaderResultEdit.load();
+        ResultEdit controllerResultEdit = (ResultEdit) fxmlLoaderResultEdit.getController();
+        Scene sceneResultEdit = new Scene(rootResultEdit, 500, 410);
+        controllerSampleMain.setScene(sceneCreateTest);
+        controllerCreaterTest.setScene(sceneResultEdit);
     }
 
 

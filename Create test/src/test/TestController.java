@@ -54,6 +54,7 @@ public class TestController implements Initializable  {
             HBox.setHgrow(this.labelBall, Priority.ALWAYS);
 
             textBall.setMaxWidth(30);
+            textTest.setMaxWidth(170);
 
             this.labelBall.setText(labelBall);
 

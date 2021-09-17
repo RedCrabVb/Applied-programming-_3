@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="test.ResultEdit"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <Button layoutX="55.0" layoutY="353.0" mnemonicParsing="false" onAction="#addGrade" text="добавить тест" />
+        <ListView fx:id="listView" layoutX="55.0" layoutY="31.0" prefHeight="308.0" prefWidth="467.0" />
+        <Button layoutX="244.0" layoutY="353.0" mnemonicParsing="false" onAction="#onExit" text="завершить редактирование вопросов"/>
+    </children>
+</AnchorPane>
