@@ -13,10 +13,12 @@ public class Main extends Application {
         FXMLLoader fxmlLoaderSampleMain = new FXMLLoader(getClass().getResource("../fxml/sampleMain.fxml"));
         FXMLLoader fxmlLoaderConstructorTest =  new FXMLLoader(getClass().getResource("../fxml/constructorTest.fxml"));
         FXMLLoader fxmlLoaderResultEdit = new FXMLLoader(getClass().getResource("../fxml/resultEdit.fxml"));
+        FXMLLoader fxmlLoaderEnd = new FXMLLoader(getClass().getResource("../fxml/sampleEnd.fxml"));
 
         Parent rootStart = fxmlLoaderSampleMain.load();
         Parent rootConstructorTest = fxmlLoaderConstructorTest.load();
         Parent rootResultEdit = fxmlLoaderResultEdit.load();
+        Parent rootEnd = fxmlLoaderEnd.load();
 
         ControllerMain controllerSampleMain = fxmlLoaderSampleMain.getController();
         ControllerConstructorTest controllerConstructorTest = fxmlLoaderConstructorTest.getController();
@@ -25,14 +27,14 @@ public class Main extends Application {
         Scene sceneMain = new Scene(rootStart);
         Scene sceneConstructorTest = new Scene(rootConstructorTest);
         Scene sceneConstructorGrade = new Scene(rootResultEdit);
-
+        Scene sceneEnd = new Scene(rootEnd);
 
         controllerSampleMain.setScene(sceneConstructorTest);
 
         controllerConstructorTest.setScene(sceneConstructorGrade);
         controllerConstructorTest.setPrevision(sceneMain);
 
-        controllerResultEdit.setScene(sceneConstructorGrade);
+        controllerResultEdit.setScene(sceneEnd);
         controllerResultEdit.setPrevision(sceneConstructorTest);
 
 

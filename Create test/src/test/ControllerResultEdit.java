@@ -56,9 +56,6 @@ public class ControllerResultEdit implements Initializable {
         }
     }
 
-    public void onExit(ActionEvent actionEvent) {
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<AnchorPane> list = new ArrayList<>();

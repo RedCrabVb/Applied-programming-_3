@@ -27,7 +27,6 @@ public class TestController implements Initializable  {
 
     @FXML
     public void addCaseTest(ActionEvent event) {
-        System.out.println("click");
         myObservableList.add(new HBoxCell("Введите текст", "Баллы "));
         testViewList.setItems(myObservableList);
     }
@@ -53,8 +52,8 @@ public class TestController implements Initializable  {
             this.labelText.setMaxWidth(Double.MAX_VALUE);
             HBox.setHgrow(this.labelBall, Priority.ALWAYS);
 
-            textBall.setMaxWidth(30);
-            textTest.setMaxWidth(170);
+            textBall.setMaxWidth(50);
+            textTest.setMaxWidth(180);
 
             this.labelBall.setText(labelBall);
 
