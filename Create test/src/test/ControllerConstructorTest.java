@@ -22,29 +22,39 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class ControllerCreaterTest implements Initializable {
+public class ControllerConstructorTest implements Initializable {
     private ObservableList<AnchorPane> myObservableList;
-    private static FXMLLoader fxmlLoader = new FXMLLoader();
 
     @FXML
     private ListView listView;
 
-    private Scene scene;
+    private Scene sceneNext;
+    private Scene scenePrevision;
 
     public void setScene(Scene scene) {
-        this.scene = scene;
+        this.sceneNext = scene;
+    }
+
+    public void setPrevision(Scene scene) {
+        this.scenePrevision = scene;
     }
 
     @FXML
-    public void onSecondScene(ActionEvent actionEvent) throws IOException {
+    public void onNextScene(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(scene);
+        primaryStage.setScene(sceneNext);
+    }
+
+    @FXML
+    public void onPrevisionScene(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(scenePrevision);
     }
 
     @FXML
     public void addTest(ActionEvent event) {
         try {
-            AnchorPane anchorPaneTestNews = fxmlLoader.load(getClass().getResource("/fxml/test.fxml"));
+            AnchorPane anchorPaneTestNews = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
             myObservableList.add(anchorPaneTestNews);
         } catch (IOException e) {
             e.printStackTrace();

@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Controller {
+public class ControllerMain {
     Scene scene;
 
     public void setScene(Scene scene) {

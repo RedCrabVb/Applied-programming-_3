@@ -11,23 +11,34 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoaderSampleMain = new FXMLLoader(getClass().getResource("../fxml/sampleMain.fxml"));
-        Parent rootStart = fxmlLoaderSampleMain.load();
-        Controller controllerSampleMain = (Controller) fxmlLoaderSampleMain.getController();
-        primaryStage.setTitle("constructor test");
-        primaryStage.setScene(new Scene(rootStart, 480, 340));
-        primaryStage.show();
-
-        FXMLLoader fxmlLoaderCreateTest =  new FXMLLoader(getClass().getResource("../fxml/createrTest.fxml"));
-        Parent rootCreateTest = fxmlLoaderCreateTest.load();
-        ControllerCreaterTest controllerCreaterTest = (ControllerCreaterTest) fxmlLoaderCreateTest.getController();
-        Scene sceneCreateTest = new Scene(rootCreateTest, 560, 410); //name 'constructor test' for variable better
-
+        FXMLLoader fxmlLoaderConstructorTest =  new FXMLLoader(getClass().getResource("../fxml/constructorTest.fxml"));
         FXMLLoader fxmlLoaderResultEdit = new FXMLLoader(getClass().getResource("../fxml/resultEdit.fxml"));
+
+        Parent rootStart = fxmlLoaderSampleMain.load();
+        Parent rootConstructorTest = fxmlLoaderConstructorTest.load();
         Parent rootResultEdit = fxmlLoaderResultEdit.load();
-        ResultEdit controllerResultEdit = (ResultEdit) fxmlLoaderResultEdit.getController();
-        Scene sceneResultEdit = new Scene(rootResultEdit, 500, 410);
-        controllerSampleMain.setScene(sceneCreateTest);
-        controllerCreaterTest.setScene(sceneResultEdit);
+
+        ControllerMain controllerSampleMain = fxmlLoaderSampleMain.getController();
+        ControllerConstructorTest controllerConstructorTest = fxmlLoaderConstructorTest.getController();
+        ControllerResultEdit controllerResultEdit = fxmlLoaderResultEdit.getController();
+
+        Scene sceneMain = new Scene(rootStart);
+        Scene sceneConstructorTest = new Scene(rootConstructorTest);
+        Scene sceneConstructorGrade = new Scene(rootResultEdit);
+
+
+        controllerSampleMain.setScene(sceneConstructorTest);
+
+        controllerConstructorTest.setScene(sceneConstructorGrade);
+        controllerConstructorTest.setPrevision(sceneMain);
+
+        controllerResultEdit.setScene(sceneConstructorGrade);
+        controllerResultEdit.setPrevision(sceneConstructorTest);
+
+
+        primaryStage.setTitle("constructor test");
+        primaryStage.setScene(sceneMain);
+        primaryStage.show();
     }
 
 

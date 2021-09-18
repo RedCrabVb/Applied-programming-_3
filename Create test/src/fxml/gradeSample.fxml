@@ -5,7 +5,6 @@
 
 <AnchorPane prefHeight="376.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.GrableController">
     <children>
-        <Button fx:id="addCaseGrable" layoutX="27.0" layoutY="298.0" mnemonicParsing="false" onAction="#addCaseGrable" text="добавить вариант ответа" />
-      <Pane layoutX="39.0" layoutY="37.0" prefHeight="232.0" prefWidth="403.0" />
+      <ListView fx:id="listView" layoutX="27.0" layoutY="48.0" prefHeight="216.0" prefWidth="397.0" />
     </children>
 </AnchorPane>
