@@ -10,10 +10,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoaderSampleMain = new FXMLLoader(getClass().getResource("../fxml/sampleMain.fxml"));
-        FXMLLoader fxmlLoaderConstructorTest =  new FXMLLoader(getClass().getResource("../fxml/constructorTest.fxml"));
-        FXMLLoader fxmlLoaderResultEdit = new FXMLLoader(getClass().getResource("../fxml/resultEdit.fxml"));
-        FXMLLoader fxmlLoaderEnd = new FXMLLoader(getClass().getResource("../fxml/sampleEnd.fxml"));
+        FXMLLoader fxmlLoaderSampleMain = new FXMLLoader(getClass().getResource("fxml/sampleMain.fxml"));
+        FXMLLoader fxmlLoaderConstructorTest =  new FXMLLoader(getClass().getResource("fxml/constructorTest.fxml"));
+        FXMLLoader fxmlLoaderResultEdit = new FXMLLoader(getClass().getResource("fxml/resultEdit.fxml"));
+        FXMLLoader fxmlLoaderEnd = new FXMLLoader(getClass().getResource("fxml/sampleEnd.fxml"));
 
         Parent rootStart = fxmlLoaderSampleMain.load();
         Parent rootConstructorTest = fxmlLoaderConstructorTest.load();

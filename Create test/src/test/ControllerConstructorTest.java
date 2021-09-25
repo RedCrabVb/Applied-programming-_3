@@ -50,7 +50,7 @@ public class ControllerConstructorTest implements Initializable {
     @FXML
     public void addTest(ActionEvent event) {
         try {
-            AnchorPane anchorPaneTestNews = FXMLLoader.load(getClass().getResource("/fxml/test.fxml"));
+            AnchorPane anchorPaneTestNews = FXMLLoader.load(getClass().getResource("/test/fxml/test.fxml"));
             myObservableList.add(anchorPaneTestNews);
         } catch (IOException e) {
             e.printStackTrace();

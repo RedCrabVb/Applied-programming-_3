@@ -49,7 +49,7 @@ public class ControllerResultEdit implements Initializable {
 
     public void addGrade(ActionEvent actionEvent) {
         try {
-            AnchorPane anchorPaneTestNews = FXMLLoader.load(getClass().getResource("/fxml/grable.fxml"));
+            AnchorPane anchorPaneTestNews = FXMLLoader.load(getClass().getResource("/test/fxml/grable.fxml"));
             myObservableList.add(anchorPaneTestNews);
         } catch (IOException e) {
             e.printStackTrace();
