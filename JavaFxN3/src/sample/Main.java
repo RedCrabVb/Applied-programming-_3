@@ -1,4 +1,4 @@
-package sample;
+package com.sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("com/sample/sample.fxml"));
         primaryStage.setTitle("Tabulating function");
         primaryStage.setScene(new Scene(root, 325, 300));
         primaryStage.show();
