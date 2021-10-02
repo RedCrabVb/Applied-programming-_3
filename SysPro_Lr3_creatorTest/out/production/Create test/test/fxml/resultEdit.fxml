@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.ControllerResultEdit">
+    <children>
+        <Button layoutX="55.0" layoutY="353.0" mnemonicParsing="false" onAction="#addGrade" text="добавить результат" />
+        <ListView fx:id="listView" layoutX="55.0" layoutY="31.0" prefHeight="308.0" prefWidth="467.0" />
+      <Button layoutX="55.0" layoutY="393.0" mnemonicParsing="false" onAction="#onNextScene" text="завершить" />
+      <Button layoutX="460.0" layoutY="393.0" mnemonicParsing="false" onAction="#onPrevisionScene" text="назад" />
+    </children>
+</AnchorPane>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <TextField layoutX="91.0" layoutY="80.0" prefHeight="32.0" prefWidth="49.0" fx:id="xStart" />
+        <TextField layoutX="91.0" layoutY="128.0" prefHeight="32.0" prefWidth="49.0" fx:id="xEnd" />
+        <TextField fx:id="hx" layoutX="91.0" layoutY="172.0" prefHeight="32.0" prefWidth="49.0" />
+        <Label layoutX="41.0" layoutY="88.0" text="X0" />
+        <Label layoutX="39.0" layoutY="136.0" text="XN" />
+        <Label layoutX="39.0" layoutY="180.0" text="HX" />
+        <RadioButton fx:id="max" layoutX="505.0" layoutY="102.0" mnemonicParsing="false" text="Max">
+            <toggleGroup>
+                <ToggleGroup fx:id="funcGroup" />
+            </toggleGroup></RadioButton>
+        <RadioButton fx:id="min" layoutX="505.0" layoutY="142.0" mnemonicParsing="false" text="Min" toggleGroup="$funcGroup" />
+        <RadioButton fx:id="avg" layoutX="505.0" layoutY="185.0" mnemonicParsing="false" text="Avg" toggleGroup="$funcGroup" />
+        <Label layoutX="505.0" layoutY="61.0" text="Действие" />
+        <Button fx:id="buttonCalculate" layoutX="493.0" layoutY="234.0" mnemonicParsing="false" onAction="#calculate" text="Вычислить" />
+        <Label fx:id="resultText" layoutX="32.0" layoutY="243.0" text="Результат:" />
+        <Label layoutX="26.0" layoutY="21.0" text="func: y=(x2+1)∙sin(3x), var - 1" />
+      <LineChart fx:id="chart" alternativeColumnFillVisible="true" depthTest="DISABLE" layoutX="159.0" layoutY="60.0" opacity="0.04" prefHeight="225.0" prefWidth="320.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+    </children>
+</AnchorPane>

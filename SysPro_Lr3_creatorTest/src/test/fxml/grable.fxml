@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="285.0" prefWidth="415.0" xmlns="http://javafx.com/javafx/11.0.2" fx:controller="test.ControllerGrable" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label layoutX="22.0" layoutY="93.0" prefHeight="26.0" prefWidth="71.0" text="Заголовок" />
+        <Label layoutX="22.0" layoutY="133.0" text="Описание" />
+        <TextField fx:id="header" layoutX="108.0" layoutY="93.0" prefHeight="26.0" prefWidth="283.0" />
+        <Label layoutX="24.0" layoutY="62.0" text="Результат для суммы баллов" />
+        <TextField fx:id="minBal" layoutX="236.0" layoutY="57.0" prefHeight="26.0" prefWidth="38.0" />
+        <TextField fx:id="maxBal" layoutX="316.0" layoutY="57.0" prefHeight="26.0" prefWidth="38.0" />
+        <Label layoutX="285.0" layoutY="62.0" text="до" />
+      <TextArea fx:id="description" layoutX="24.0" layoutY="160.0" prefHeight="109.0" prefWidth="362.0" />
+    </children>
+</AnchorPane>

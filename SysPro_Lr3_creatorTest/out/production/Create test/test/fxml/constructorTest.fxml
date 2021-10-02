@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.ControllerConstructorTest">
+   <children>
+      <Button layoutX="55.0" layoutY="353.0" mnemonicParsing="false" onAction="#addTest" text="добавить тест" />
+      <ListView fx:id="listView" layoutX="55.0" layoutY="31.0" prefHeight="308.0" prefWidth="500.0" />
+      <Button layoutX="277.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNextScene" text="завершить редактирование вопросов" />
+      <Button layoutX="492.0" layoutY="390.0" mnemonicParsing="false" onAction="#onPrevisionScene" prefHeight="26.0" prefWidth="62.0" text="назад" />
+   </children>
+</AnchorPane>
