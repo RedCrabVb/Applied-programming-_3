@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vivt.MainController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c3cbd3" height="199.0" layoutX="397.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="224.0" />
+        <Label layoutX="482.0" layoutY="30.0" text="Фигуры" />
+        <RadioButton fx:id="circle" layoutX="457.0" layoutY="90.0" mnemonicParsing="false" text="круг" />
+        <RadioButton fx:id="square" layoutX="457.0" layoutY="120.0" mnemonicParsing="false" text="квадрат" />
+        <RadioButton fx:id="triangle" layoutX="457.0" layoutY="150.0" mnemonicParsing="false" text="треугольник" />
+        <Button fx:id="drawShapes" layoutX="446.0" layoutY="187.0" mnemonicParsing="false" text="Рисовать фигуру" />
+        <Label layoutX="27.0" layoutY="58.0" text="Введите толщину линии, px1" />
+        <Label layoutX="27.0" layoutY="91.0" text="Выберите цвет линии" />
+        <Label layoutX="27.0" layoutY="122.0" text="Выберите цвет заливки" />
+        <TextField fx:id="lineThickness" layoutX="242.0" layoutY="53.0" prefHeight="26.0" prefWidth="135.0" />
+        <ComboBox fx:id="lineColor" layoutX="242.0" layoutY="85.0" prefHeight="26.0" prefWidth="135.0" />
+        <ComboBox fx:id="fillColor" layoutX="242.0" layoutY="115.0" prefHeight="26.0" prefWidth="135.0" />
+      <Pane fx:id="planeShapes" layoutX="28.0" layoutY="168.0" prefHeight="199.0" prefWidth="274.0" />
+
+    </children>
+</AnchorPane>

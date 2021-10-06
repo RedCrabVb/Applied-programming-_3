@@ -71,6 +71,8 @@ public class MainController implements Initializable {
             chart.getData().clear();
             chart.getData().add(series);
 
+            System.out.println((v * Math.sin(Math.toRadians(alpha))) / g);
+
             maxRange.setText(String.format("%.2f", Collections.max(listX)));
             maximumRange.setText(maxRange.getText());
             maxHeight.setText(String.format("%.2f", Collections.max(listY)));
