@@ -1,18 +1,21 @@
 package ru.vivt;
 
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.Chart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.*;
@@ -34,6 +37,10 @@ public class MainController implements Initializable {
     @FXML
     public Pane planeShapes;
 
+    private Shape shape;
+
+    private Text textError;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ToggleGroup group = new ToggleGroup();
@@ -41,55 +48,91 @@ public class MainController implements Initializable {
         square.setToggleGroup(group);
         triangle.setToggleGroup(group);
 
-        //"Белый", "Черный", "Красный", "Желтый", "Оранжевый", "Зеленый", "Синий", "Фиолетовый", "Розовый", "Коричневый", "Серый"
+        textError = new Text("Error input data");
+        textError.setX(20);
+        textError.setFont(Font.font("System", 25));
+
         Map<String, Color> mapsColors = new HashMap<>();
         mapsColors.put("Белый", Color.WHITE);
         mapsColors.put("Черный", Color.BLACK);
+        mapsColors.put("Красный", Color.RED);
+        mapsColors.put("Желтый", Color.YELLOW);
+        mapsColors.put("Оранжевый", Color.ORANGE);
+        mapsColors.put("Зеленый", Color.GREEN);
+        mapsColors.put("Синий", Color.BLUE);
+        mapsColors.put("Фиолетовый", Color.PURPLE);
+        mapsColors.put("Розовый", Color.PINK);
+        mapsColors.put("Коричневый", Color.BROWN);
+        mapsColors.put("Серый", Color.GRAY);
 
         ObservableList<String> colorsList = FXCollections.observableArrayList(mapsColors.keySet());
         lineColor.setItems(colorsList);
         fillColor.setItems(colorsList);
 
-        drawShapes.setOnAction(e -> {
-            System.out.println(mapsColors.get(lineColor.getValue()));
+        circle.setOnAction(e -> {
+            Circle shape = new Circle();
 
+            shape.setRadius(planeShapes.getWidth() / 3);
+            shape.setCenterX(planeShapes.getWidth() / 2);
+            shape.setCenterY(planeShapes.getHeight() / 2);
+
+            this.shape = shape;
+        });
+        square.setOnAction(e -> {
+            Rectangle shape = new Rectangle();
+
+            shape.setHeight(planeShapes.getHeight() - 50);
+            shape.setWidth(shape.getHeight());
+            shape.setX(30);
+            shape.setY(30);
+
+            this.shape = shape;
+        });
+        triangle.setOnAction(e -> {
+            Polygon shapes = new Polygon();
+
+            shapes.getPoints().addAll(new Double[]{
+                    10.0, 10.0,
+                    90.0, 190.0,
+                    220.0, 90.0});
+
+            this.shape = shapes;
+        });
+
+        drawShapes.setOnAction(e -> {
             planeShapes.getChildren().clear();
 
-            int thickness = 1;
             try {
-                thickness = Integer.parseInt(lineThickness.getText());
+                Optional.of(group.getSelectedToggle()).orElseThrow();
+
+                this.shape.setFill(Optional.of(mapsColors.get(fillColor.getValue())).orElseThrow());
+                this.shape.setStroke(Optional.of(mapsColors.get(lineColor.getValue())).orElseThrow());
+                this.shape.setStrokeWidth(Integer.parseInt(lineThickness.getText()));
+
+                planeShapes.getChildren().add(this.shape);
+                animation();
             } catch (Exception exception) {
-                exception.printStackTrace();
+                textError.setY(planeShapes.getWidth() / 2);
+                this.shape = textError;
+                Toggle toggle = group.getSelectedToggle();
+                if (toggle != null) {
+                    toggle.setSelected(false);
+                }
+
+                System.out.println(exception.getMessage());
+                planeShapes.getChildren().add(this.shape);
             }
 
-            if (circle.isSelected()) {
-                Circle shapes = new Circle();
-                shapes.setRadius(planeShapes.getWidth() / 3);
-                shapes.setCenterX(planeShapes.getWidth() / 2);
-                shapes.setCenterY(planeShapes.getHeight() / 2);
-                shapes.setFill(mapsColors.get(fillColor.getValue()));
-                shapes.setStroke(mapsColors.get(lineColor.getValue()));
-                shapes.setStrokeWidth(thickness);
-                planeShapes.getChildren().add(shapes);
-            } else if (square.isSelected()) {
-                Rectangle shapes = new Rectangle();
-                shapes.setHeight(planeShapes.getHeight() / 2);
-                shapes.setWidth(shapes.getHeight());
-                shapes.setFill(mapsColors.get(fillColor.getValue()));
-                shapes.setStroke(mapsColors.get(lineColor.getValue()));
-                shapes.setStrokeWidth(thickness);
-                planeShapes.getChildren().add(shapes);
-            } else if(triangle.isSelected()) {
-                Polygon shapes = new Polygon();
-                shapes.getPoints().addAll(new Double[]{
-                        0.0, 0.0,
-                        planeShapes.getHeight() - 40, planeShapes.getWidth() - 40,
-                        planeShapes.getWidth()  - 50, planeShapes.getHeight() - 70 });
-                shapes.setFill(mapsColors.get(fillColor.getValue()));
-                shapes.setStroke(mapsColors.get(lineColor.getValue()));
-                shapes.setStrokeWidth(thickness);
-                planeShapes.getChildren().add(shapes);
-            }
         });
+    }
+
+    private void animation() {
+        //Duration = 2.5 seconds
+        Duration duration = Duration.millis(2500);
+        //Create new rotate transition
+        RotateTransition rotateTransition = new RotateTransition(duration, shape);
+        //Rotate by 200 degree
+        rotateTransition.setByAngle(360);
+        rotateTransition.play();
     }
 }

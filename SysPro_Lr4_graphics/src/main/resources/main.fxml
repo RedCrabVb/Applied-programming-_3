@@ -2,23 +2,47 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vivt.MainController">
+<AnchorPane prefHeight="400.0" prefWidth="655.0" style="-fx-background-image: /home/redcrab/GitHub/Applied-programming-_3/SysPro_Lr4_graphics/src/main/resources/img/background\.jpeg;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vivt.MainController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c3cbd3" height="199.0" layoutX="397.0" layoutY="30.0" stroke="BLACK" strokeType="INSIDE" width="224.0" />
-        <Label layoutX="482.0" layoutY="30.0" text="Фигуры" />
-        <RadioButton fx:id="circle" layoutX="457.0" layoutY="90.0" mnemonicParsing="false" text="круг" />
-        <RadioButton fx:id="square" layoutX="457.0" layoutY="120.0" mnemonicParsing="false" text="квадрат" />
-        <RadioButton fx:id="triangle" layoutX="457.0" layoutY="150.0" mnemonicParsing="false" text="треугольник" />
-        <Button fx:id="drawShapes" layoutX="446.0" layoutY="187.0" mnemonicParsing="false" text="Рисовать фигуру" />
-        <Label layoutX="27.0" layoutY="58.0" text="Введите толщину линии, px1" />
-        <Label layoutX="27.0" layoutY="91.0" text="Выберите цвет линии" />
-        <Label layoutX="27.0" layoutY="122.0" text="Выберите цвет заливки" />
-        <TextField fx:id="lineThickness" layoutX="242.0" layoutY="53.0" prefHeight="26.0" prefWidth="135.0" />
-        <ComboBox fx:id="lineColor" layoutX="242.0" layoutY="85.0" prefHeight="26.0" prefWidth="135.0" />
-        <ComboBox fx:id="fillColor" layoutX="242.0" layoutY="115.0" prefHeight="26.0" prefWidth="135.0" />
-      <Pane fx:id="planeShapes" layoutX="28.0" layoutY="168.0" prefHeight="199.0" prefWidth="274.0" />
+        <AnchorPane layoutX="369.0" layoutY="168.0" prefHeight="199.0" prefWidth="232.0" style="-fx-background-color: #c3cbd3; -fx-border-width: 1px; -fx-border-color: black;">
+            <children>
+                <Label layoutX="80.0" layoutY="14.0" text="Фигуры" />
+                <RadioButton fx:id="circle" layoutX="69.0" layoutY="53.0" mnemonicParsing="false" text="Круг">
+               <font>
+                   <Font size="14.0" />
+               </font></RadioButton>
+                <RadioButton fx:id="square" layoutX="69.0" layoutY="91.0" mnemonicParsing="false" text="Квадрат">
+               <font>
+                  <Font size="14.0" />
+               </font></RadioButton>
+                <RadioButton fx:id="triangle" layoutX="68.0" layoutY="124.0" mnemonicParsing="false" text="Треугольник">
+               <font>
+                  <Font size="14.0" />
+               </font></RadioButton>
+                <Button fx:id="drawShapes" layoutX="57.0" layoutY="159.0" mnemonicParsing="false" text="Рисовать фигуру" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="28.0" layoutY="49.0" text="Введите толщину линии, px1">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label layoutX="27.0" layoutY="91.0" text="Выберите цвет линии">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label layoutX="27.0" layoutY="122.0" text="Выберите цвет заливки">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <TextField fx:id="lineThickness" layoutX="369.0" layoutY="40.0" prefHeight="26.0" prefWidth="233.0" text="4">
+         <font>
+            <Font name="Noto Sans NKo Regular" size="16.0" />
+         </font></TextField>
+        <ComboBox fx:id="lineColor" layoutX="368.0" layoutY="89.0" prefHeight="26.0" prefWidth="233.0" />
+        <ComboBox fx:id="fillColor" layoutX="368.0" layoutY="119.0" prefHeight="26.0" prefWidth="233.0" />
+        <Pane fx:id="planeShapes" layoutX="28.0" layoutY="168.0" prefHeight="199.0" prefWidth="232.0" style="-fx-background-color: #c3cbd3; -fx-border-width: 1px; -fx-border-color: black;" />
 
     </children>
 </AnchorPane>
