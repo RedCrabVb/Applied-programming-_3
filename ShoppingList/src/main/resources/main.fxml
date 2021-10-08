@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="655.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vivt.ControllerMain">
+    <children>
+        <TabPane layoutX="8.0" layoutY="6.0" prefHeight="385.0" prefWidth="637.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Главное">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <PieChart fx:id="pieChartShopping" layoutX="20.0" layoutY="21.0" prefHeight="218.0" prefWidth="245.0" />
+                        <RadioButton fx:id="dayButton" layoutX="20.0" layoutY="239.0" mnemonicParsing="false" text="День" />
+                        <RadioButton fx:id="weekButton" layoutX="20.0" layoutY="263.0" mnemonicParsing="false" text="Неделя" />
+                        <RadioButton fx:id="monthButton" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" text="Месяц" />
+                        <RadioButton fx:id="yearButton" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" text="Год" />
+                        <ListView fx:id="shoppingList" layoutX="291.0" layoutY="14.0" prefHeight="309.0" prefWidth="311.0" />
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Покупки">
+                    <content>
+                        <AnchorPane>
+                     <children>
+                        <Label layoutX="31.0" layoutY="28.0" text="Дата назначена" />
+                        <ListView fx:id="shoppingListDate" layoutX="14.0" layoutY="51.0" prefHeight="278.0" prefWidth="188.0" />
+                        <Label layoutX="219.0" layoutY="28.0" text="Дата не назначена" />
+                        <ListView fx:id="shoppingListNotDate" layoutX="219.0" layoutY="51.0" prefHeight="272.0" prefWidth="199.0" />
+                        <Label layoutX="435.0" layoutY="28.0" text="Куплено" />
+                        <ListView fx:id="shoppingListDateCompleted" layoutX="435.0" layoutY="50.0" prefHeight="275.0" prefWidth="192.0" />
+                     </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Создать покупку">
+                    <content>
+                        <AnchorPane>
+                     <children>
+                        <Label fx:id="namePurchase" layoutX="20.0" layoutY="14.0" text="Название покупки" />
+                        <TextField layoutX="20.0" layoutY="30.0" />
+                        <Label layoutX="20.0" layoutY="68.0" text="Дата напоминания" />
+                        <TextField layoutX="20.0" layoutY="91.0" />
+                        <Label layoutX="20.0" layoutY="126.0" text="Цена (руб)" />
+                        <TextField layoutX="20.0" layoutY="150.0" prefHeight="26.0" prefWidth="172.0" />
+                        <ChoiceBox layoutX="21.0" layoutY="211.0" prefHeight="26.0" prefWidth="170.0" />
+                        <Label layoutX="20.0" layoutY="186.0" text="категория" />
+                        <TextArea fx:id="note" layoutX="219.0" layoutY="50.0" prefHeight="287.0" prefWidth="404.0" />
+                        <Label layoutX="219.0" layoutY="22.0" text="Заметка" />
+                        <Button fx:id="addPurchase" layoutX="68.0" layoutY="302.0" mnemonicParsing="false" text="Добавить" />
+                     </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
