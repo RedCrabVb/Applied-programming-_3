@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,60 +15,59 @@ public class Repository {
     private String file;
 
     private static int currentId;
-    private JsonArray jsonArray;
+    private List<Purchase> listPurchase;
 
     public Repository(String file) {
         this.file = file;
+        this.listPurchase = new ArrayList<>();
         try {
-            jsonArray = JsonParser.parseReader(new FileReader(new File(file))).getAsJsonArray();
-            jsonArray.forEach(r -> {
-                int id = r.getAsJsonObject().get("id").getAsInt();
-                if (id > currentId) {
-                    currentId = id;
-                }
+            JsonArray jsonArray = JsonParser.parseReader(new FileReader(file)).getAsJsonArray();
+            jsonArray.forEach(p -> {
+                listPurchase.add(gson.fromJson(p, Purchase.class));
             });
         } catch (FileNotFoundException | IllegalStateException e) {
-            jsonArray = new JsonArray();
             currentId = 1;
             save();
         }
     }
 
-    public void addPurchase(String text, String date) {
+    public void addPurchase(String text, LocalDate date) {
         Purchase purchase = new Purchase(currentId++, text, date);
-        jsonArray.add(JsonParser.parseString(gson.toJson(purchase, Purchase.class)));
+        listPurchase.add(purchase);
     }
 
-    public List<Purchase> getAll() {
-        List<Purchase> list = new ArrayList<>();
-        for (int i = 0; i < jsonArray.size(); i++) {
-            JsonObject json = jsonArray.get(i).getAsJsonObject();
-            list.add(gson.fromJson(json, Purchase.class));
-        }
-        return list;
+    public void addPurchase(String header, LocalDate date, String price, String note) {
+        Purchase purchase = new Purchase(currentId++, header, date);
+        purchase.setPrice(price);
+        listPurchase.add(purchase);
+
+        save();
+    }
+
+    public List<Purchase> getAllPurchase() {
+        return listPurchase;
     }
 
     public void removePurchase(int id) {
-        for (int i = 0; i < jsonArray.size(); i++) {
-            if (jsonArray.get(i).getAsJsonObject().get("id").getAsInt() == id) {
-                jsonArray.remove(i);
-                break;
+        for (int i = 0; i < listPurchase.size(); i++) {
+            if (listPurchase.get(i).getId() == id) {
+                listPurchase.remove(i);
+                return;
             }
         }
     }
 
     public void completedPurchase(int id, boolean completed) {
-        for (int i = 0; i < jsonArray.size(); i++) {
-            if (jsonArray.get(i).getAsJsonObject().get("id").getAsInt() == id) {
-//                jsonArray.get(i).getAsJsonObject().remove("")
-                break;
-            }
-        }
+        listPurchase.stream().filter(r -> r.getId() == id).findAny().get().setCompleted(completed);
     }
 
     public void save() {
         try {
-            FileWriter fileWriter = new FileWriter(new File(file));
+            JsonArray jsonArray = new JsonArray();
+            for (Purchase p : listPurchase) {
+                jsonArray.add(gson.toJsonTree(p));
+            }
+            FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(jsonArray.toString());
             fileWriter.close();
         } catch (IOException e) {

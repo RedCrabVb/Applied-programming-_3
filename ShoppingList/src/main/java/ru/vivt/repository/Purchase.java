@@ -1,14 +1,17 @@
 package ru.vivt.repository;
 
+import java.time.LocalDate;
+
 public class Purchase {
     private int id;
     private String header;
-    private String date;
+    private LocalDate date;
     private boolean completed;
 
+    private String price;
     private String note;
 
-    public Purchase(int id, String header, String date) {
+    public Purchase(int id, String header, LocalDate date) {
         this.id = id;
         this.header = header;
         this.date = date;
@@ -32,11 +35,23 @@ public class Purchase {
         return header;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     public boolean isCompleted() {
         return completed;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

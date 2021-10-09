@@ -6,16 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
+import ru.vivt.repository.Purchase;
 import ru.vivt.repository.Repository;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
 
 public class ControllerMain implements Initializable {
@@ -28,27 +26,72 @@ public class ControllerMain implements Initializable {
     @FXML
     public ListView shoppingList;
 
+    @FXML
+    public Button addPurchase;
+
+    @FXML
+    public TextField headerPurchaseFiled, priceFiled;
+
+    @FXML
+    public DatePicker dayNotificationsField;
+
+    @FXML
+    public TextArea noteFiled;
+
+
+
+    private LocalDate localDateMinimum;
+
     private ObservableList<AnchorPane> listOfShopping;
+
+
+    private Repository repository;
+
+    private void updateList(LocalDate localDateMinimum) {
+        this.localDateMinimum = localDateMinimum;
+        shoppingList.getItems().clear();
+//        repository.getAllPurchase().stream().filter(p -> p.getDate() != null).forEach(p ->
+//                System.out.println(localDateMinimum.isBefore(p.getDate()) + " purchase: " + p.getDate() + ", date filter " + localDateMinimum)
+//        );
+        repository.getAllPurchase()
+                .stream()
+                .filter(p -> p.getDate() != null)
+                .filter(p -> localDateMinimum.isBefore(p.getDate()))
+                .forEach(p -> {
+                    addItemsInShoppingList(listOfShopping, p);
+                });
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //листы
-        Repository repository = new Repository("repository.json");
-        repository.addPurchase("test1", "02_05_2021");
-        repository.addPurchase("vvv", "04_06_2000");
-        repository.addPurchase("aaa", "01_01_2020");
+        repository = new Repository("repository.json");
+
 
         listOfShopping = FXCollections.observableList(new ArrayList<>());
         shoppingList.setItems(listOfShopping);
 
-        repository.getAll().forEach(p -> {
-            addItemsInShoppingList(listOfShopping, p.getHeader(), p.getDate(), p.isCompleted());
+        repository.getAllPurchase().forEach(p -> {
+            addItemsInShoppingList(listOfShopping, p);
         });
+
+        addPurchase.setOnAction(e -> {
+            repository.addPurchase(
+                    headerPurchaseFiled.getText(),
+                    dayNotificationsField.getValue(),
+                    priceFiled.getText(),
+                    noteFiled.getText()
+            );
+
+            listOfShopping.clear();
+            updateList(localDateMinimum);
+        });
+
 
         //график
         PieChart.Data slice1 = new PieChart.Data("Desktop", 213);
-        PieChart.Data slice2 = new PieChart.Data("Phone"  , 67);
-        PieChart.Data slice3 = new PieChart.Data("Tablet" , 36);
+        PieChart.Data slice2 = new PieChart.Data("Phone", 67);
+        PieChart.Data slice3 = new PieChart.Data("Tablet", 36);
 
         pieChartShopping.getData().add(slice1);
         pieChartShopping.getData().add(slice2);
@@ -61,13 +104,25 @@ public class ControllerMain implements Initializable {
         monthButton.setToggleGroup(toggleGroup);
         yearButton.setToggleGroup(toggleGroup);
 
+        dayButton.setOnAction(e -> {
+            updateList(LocalDate.now().minusDays(1));
+        });
+        weekButton.setOnAction(e -> {
+            updateList(LocalDate.now().minusWeeks(1));
+        });
+        monthButton.setOnAction(e -> {
+            updateList(LocalDate.now().minusMonths(1));
+        });
+        yearButton.setOnAction(e -> {
+            updateList(LocalDate.now().minusYears(1));
+        });
     }
 
-    public void addItemsInShoppingList(ObservableList<AnchorPane> list, String textMain, String date, boolean completed) {
+    public void addItemsInShoppingList(ObservableList<AnchorPane> list, Purchase purchase) {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("purchase.fxml"));
         loader.setControllerFactory(cls -> {
             if (cls == ControllerPurchase.class) {
-                return new ControllerPurchase(textMain, date, completed);
+                return new ControllerPurchase(purchase);
             } else
                 try {
                     return cls.newInstance();

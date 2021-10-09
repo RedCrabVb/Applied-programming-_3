@@ -39,17 +39,17 @@
                     <content>
                         <AnchorPane>
                      <children>
-                        <Label fx:id="namePurchase" layoutX="20.0" layoutY="14.0" text="Название покупки" />
-                        <TextField layoutX="20.0" layoutY="30.0" />
+                        <Label layoutX="20.0" layoutY="14.0" text="Название покупки" />
+                        <TextField fx:id="headerPurchaseFiled" layoutX="20.0" layoutY="30.0" />
                         <Label layoutX="20.0" layoutY="68.0" text="Дата напоминания" />
-                        <TextField layoutX="20.0" layoutY="91.0" />
                         <Label layoutX="20.0" layoutY="126.0" text="Цена (руб)" />
-                        <TextField layoutX="20.0" layoutY="150.0" prefHeight="26.0" prefWidth="172.0" />
+                        <TextField fx:id="priceFiled" layoutX="20.0" layoutY="150.0" prefHeight="26.0" prefWidth="172.0" />
                         <ChoiceBox layoutX="21.0" layoutY="211.0" prefHeight="26.0" prefWidth="170.0" />
                         <Label layoutX="20.0" layoutY="186.0" text="категория" />
-                        <TextArea fx:id="note" layoutX="219.0" layoutY="50.0" prefHeight="287.0" prefWidth="404.0" />
+                        <TextArea fx:id="noteFiled" layoutX="219.0" layoutY="50.0" prefHeight="287.0" prefWidth="404.0" />
                         <Label layoutX="219.0" layoutY="22.0" text="Заметка" />
                         <Button fx:id="addPurchase" layoutX="68.0" layoutY="302.0" mnemonicParsing="false" text="Добавить" />
+                        <DatePicker fx:id="dayNotificationsField" layoutX="20.0" layoutY="93.0" prefHeight="26.0" prefWidth="170.0" />
                      </children>
                         </AnchorPane>
                     </content>

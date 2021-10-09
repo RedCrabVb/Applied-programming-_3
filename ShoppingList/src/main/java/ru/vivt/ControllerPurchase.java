@@ -5,20 +5,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import ru.vivt.repository.Purchase;
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControllerPurchase implements Initializable {
-    private String text, data;
-    private boolean completed;
+    private DateTimeFormatter formatters = DateTimeFormatter.ofPattern("d/MM/uuuu");
+    private Purchase purchase;
 
-    public ControllerPurchase(String text, String data, boolean completed) {
-        this.text = text;
-        this.data = data;
-        this.completed = completed;
+    public ControllerPurchase(Purchase purchase) {
+        this.purchase = purchase;
     }
 
     @FXML
@@ -32,19 +34,18 @@ public class ControllerPurchase implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        textMain.setText(text);
-        textDate.setText(data);
-        completedCheck.setSelected(completed);
+        textMain.setText(purchase.getHeader());
+        completedCheck.setSelected(purchase.isCompleted());
 
-        anchorPanePurchase.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                System.out.println("click + " + text);
-            }
-        });
+        if (purchase.getDate() != null) {
+            textDate.setText(purchase.getDate().format(formatters));
+        }
+
+        anchorPanePurchase.setOnMouseClicked(mouseEvent -> System.out.println("click + " + purchase.getHeader()));
 
         completedCheck.setOnAction(e -> {
-            System.out.println(text + " completed = " + completedCheck.isSelected());
+            System.out.println(purchase.getHeader() + " completed = " + completedCheck.isSelected());
+            purchase.setCompleted(completedCheck.isSelected());
         });
     }
 }
