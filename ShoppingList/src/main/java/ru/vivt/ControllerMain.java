@@ -41,6 +41,9 @@ public class ControllerMain implements Initializable {
     @FXML
     public TextArea noteFiled;
 
+    @FXML
+    public ChoiceBox category;
+
 
     private LocalDate localDateMinimum;
 
@@ -79,6 +82,24 @@ public class ControllerMain implements Initializable {
                 .forEach(p -> {
                     addItemsInShoppingList(listOfShoppingObservable, p);
                 });
+
+        pieChartShopping.getData().clear();
+        HashMap<String, Integer> mapCategoryCount = new HashMap<>();
+        repository.getAllPurchase()
+                .stream()
+                .filter(p -> p.isCompleted())
+                .filter(p -> p.getDate() != null)
+                .filter(p -> localDateMinimum.isBefore(p.getDate()))
+                .forEach(p -> {
+                    if (mapCategoryCount.containsKey(p.getCategory())) {
+                        mapCategoryCount.put(p.getCategory(), mapCategoryCount.get(p.getCategory()));
+                    } else {
+                        mapCategoryCount.put(p.getCategory(), 1);
+                    }
+        });
+        mapCategoryCount.keySet().forEach(k -> {
+            pieChartShopping.getData().add(new PieChart.Data(k, mapCategoryCount.get(k)));
+        });
     }
 
     @Override
@@ -105,7 +126,8 @@ public class ControllerMain implements Initializable {
                     headerPurchaseFiled.getText(),
                     dayNotificationsField.getValue(),
                     priceFiled.getText(),
-                    noteFiled.getText()
+                    noteFiled.getText(),
+                    Optional.of(category.getValue()).orElse("Без категории").toString()
             );
 
             listOfShoppingObservable.clear();
@@ -113,15 +135,7 @@ public class ControllerMain implements Initializable {
         });
 
 
-        //график
-        PieChart.Data slice1 = new PieChart.Data("Desktop", 213);
-        PieChart.Data slice2 = new PieChart.Data("Phone", 67);
-        PieChart.Data slice3 = new PieChart.Data("Tablet", 36);
-
-        pieChartShopping.getData().add(slice1);
-        pieChartShopping.getData().add(slice2);
-        pieChartShopping.getData().add(slice3);
-
+        category.setItems(FXCollections.observableArrayList(Arrays.asList("Автомобиль", "Дом", "Здоровье", "Личные расходы", "Одежда", "Питание", "Подарки", "Семейные расходы", "Техника", "Услуги")));
         //сортировка radioButton
         ToggleGroup toggleGroup = new ToggleGroup();
         dayButton.setToggleGroup(toggleGroup);
@@ -141,6 +155,8 @@ public class ControllerMain implements Initializable {
         yearButton.setOnAction(e -> {
             updateList(LocalDate.now().minusYears(1));
         });
+
+        yearButton.setSelected(true);
     }
 
     public void addItemsInShoppingList(ObservableList<AnchorPane> list, Purchase purchase) {

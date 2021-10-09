@@ -10,6 +10,7 @@ public class Purchase {
 
     private String price;
     private String note;
+    private String category;
 
     public Purchase(int id, String header, LocalDate date) {
         this.id = id;
@@ -53,5 +54,13 @@ public class Purchase {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
