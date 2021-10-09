@@ -24,7 +24,10 @@ public class ControllerMain implements Initializable {
     public RadioButton dayButton, weekButton, monthButton, yearButton;
 
     @FXML
-    public ListView shoppingList;
+    public ListView<AnchorPane> shoppingList,
+            shoppingListDate,
+            shoppingListNotDate,
+            shoppingListDateCompleted;
 
     @FXML
     public Button addPurchase;
@@ -39,16 +42,32 @@ public class ControllerMain implements Initializable {
     public TextArea noteFiled;
 
 
-
     private LocalDate localDateMinimum;
 
-    private ObservableList<AnchorPane> listOfShopping;
+    private ObservableList<AnchorPane> listOfShoppingObservable,
+            shoppingListDateObservable,
+            shoppingListNotDateObservable,
+            shoppingListDateCompletedObservable;
 
 
     private Repository repository;
 
     private void updateList(LocalDate localDateMinimum) {
         this.localDateMinimum = localDateMinimum;
+
+        shoppingListDate.getItems().clear();
+        shoppingListNotDate.getItems().clear();
+        shoppingListDateCompleted.getItems().clear();
+        repository.getAllPurchase().forEach(p -> {
+            if (p.isCompleted()) {
+                addItemsInShoppingList(shoppingListDateCompletedObservable, p);
+            } else if (p.getDate() != null) {
+                addItemsInShoppingList(shoppingListDateObservable, p);
+            } else {
+                addItemsInShoppingList(shoppingListNotDateObservable, p);
+            }
+        });
+
         shoppingList.getItems().clear();
 //        repository.getAllPurchase().stream().filter(p -> p.getDate() != null).forEach(p ->
 //                System.out.println(localDateMinimum.isBefore(p.getDate()) + " purchase: " + p.getDate() + ", date filter " + localDateMinimum)
@@ -58,7 +77,7 @@ public class ControllerMain implements Initializable {
                 .filter(p -> p.getDate() != null)
                 .filter(p -> localDateMinimum.isBefore(p.getDate()))
                 .forEach(p -> {
-                    addItemsInShoppingList(listOfShopping, p);
+                    addItemsInShoppingList(listOfShoppingObservable, p);
                 });
     }
 
@@ -68,11 +87,17 @@ public class ControllerMain implements Initializable {
         repository = new Repository("repository.json");
 
 
-        listOfShopping = FXCollections.observableList(new ArrayList<>());
-        shoppingList.setItems(listOfShopping);
+        listOfShoppingObservable = FXCollections.observableList(new ArrayList<>());
+        shoppingListDateObservable = FXCollections.observableList(new ArrayList<>());
+        shoppingListNotDateObservable = FXCollections.observableList(new ArrayList<>());
+        shoppingListDateCompletedObservable = FXCollections.observableList(new ArrayList<>());
+        shoppingList.setItems(listOfShoppingObservable);
+        shoppingListDate.setItems(shoppingListDateObservable);
+        shoppingListNotDate.setItems(shoppingListNotDateObservable);
+        shoppingListDateCompleted.setItems(shoppingListDateCompletedObservable);
 
         repository.getAllPurchase().forEach(p -> {
-            addItemsInShoppingList(listOfShopping, p);
+            addItemsInShoppingList(listOfShoppingObservable, p);
         });
 
         addPurchase.setOnAction(e -> {
@@ -83,7 +108,7 @@ public class ControllerMain implements Initializable {
                     noteFiled.getText()
             );
 
-            listOfShopping.clear();
+            listOfShoppingObservable.clear();
             updateList(localDateMinimum);
         });
 
