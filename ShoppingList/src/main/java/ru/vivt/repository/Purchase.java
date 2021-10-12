@@ -23,6 +23,10 @@ public class Purchase {
 
     }
 
+    public void subscribe() {
+
+    }
+
 
     public void setNote(String note) {
         this.note = note;

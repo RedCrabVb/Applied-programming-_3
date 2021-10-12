@@ -207,7 +207,10 @@ public class ControllerMain implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("purchase.fxml"));
         loader.setControllerFactory(cls -> {
             if (cls == ControllerPurchase.class) {
-                return new ControllerPurchase(purchase);
+                return new ControllerPurchase(purchase, e -> {
+                    repository.removePurchase(purchase);
+                    updateList(localDateMinimum);
+                }, () -> updateList(localDateMinimum));
             } else
                 try {
                     return cls.newInstance();

@@ -45,17 +45,8 @@ public class Repository {
         return listPurchase;
     }
 
-    public void removePurchase(int id) {
-        for (int i = 0; i < listPurchase.size(); i++) {
-            if (listPurchase.get(i).getId() == id) {
-                listPurchase.remove(i);
-                return;
-            }
-        }
-    }
-
-    public void completedPurchase(int id, boolean completed) {
-        listPurchase.stream().filter(r -> r.getId() == id).findAny().get().setCompleted(completed);
+    public void removePurchase(Purchase id) {
+        listPurchase.remove(id);
     }
 
     public void save() {
