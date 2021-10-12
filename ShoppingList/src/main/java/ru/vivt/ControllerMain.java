@@ -6,7 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import ru.vivt.repository.Purchase;
@@ -59,6 +61,10 @@ public class ControllerMain implements Initializable {
 
     private Repository repository;
 
+    private void updateList() {
+        updateList(localDateMinimum);
+    }
+
     private void updateList(LocalDate localDateMinimum) {
         this.localDateMinimum = localDateMinimum;
 
@@ -81,6 +87,7 @@ public class ControllerMain implements Initializable {
 //        );
         repository.getAllPurchase()
                 .stream()
+                .filter(p -> p.isCompleted())
                 .filter(p -> p.getDate() != null)
                 .filter(p -> localDateMinimum.isBefore(p.getDate()))
                 .forEach(p -> {
@@ -175,7 +182,7 @@ public class ControllerMain implements Initializable {
             category.setValue(null);
 
             listOfShoppingObservable.clear();
-            updateList(localDateMinimum);
+            updateList();
         });
 
 
@@ -201,6 +208,7 @@ public class ControllerMain implements Initializable {
         });
 
         dayButton.setSelected(true);
+        updateList(localDateMinimum);
     }
 
     public void addItemsInShoppingList(ObservableList<AnchorPane> list, Purchase purchase) {
@@ -209,8 +217,11 @@ public class ControllerMain implements Initializable {
             if (cls == ControllerPurchase.class) {
                 return new ControllerPurchase(purchase, e -> {
                     repository.removePurchase(purchase);
-                    updateList(localDateMinimum);
-                }, () -> updateList(localDateMinimum));
+                    updateList();
+                }, () -> {
+                    updateList();
+                    repository.save();
+                });
             } else
                 try {
                     return cls.newInstance();

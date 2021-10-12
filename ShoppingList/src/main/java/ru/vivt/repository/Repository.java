@@ -47,6 +47,7 @@ public class Repository {
 
     public void removePurchase(Purchase id) {
         listPurchase.remove(id);
+        save();
     }
 
     public void save() {
