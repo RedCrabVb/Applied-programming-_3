@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vivt.RecordViewWindow">
+    <Label fx:id="titleShopping" layoutX="14.0" layoutY="28.0" text="Название покупки" />
+    <TextField fx:id="headerPurchaseFiled" editable="false" layoutX="14.0" layoutY="54.0" prefHeight="26.0" prefWidth="294.0" />
+    <Label layoutX="16.0" layoutY="134.0" text="Дата напоминания" />
+    <Label fx:id="titlePrice" layoutX="15.0" layoutY="227.0" text="Цена (руб)" />
+    <TextField fx:id="priceFiled" editable="false" layoutX="15.0" layoutY="251.0" prefHeight="26.0" prefWidth="291.0" />
+    <Label fx:id="titleCategory" layoutX="15.0" layoutY="301.0" text="Категория" />
+    <TextArea fx:id="noteFiled" layoutX="318.0" layoutY="48.0" prefHeight="304.0" prefWidth="268.0" />
+    <Label layoutX="318.0" layoutY="20.0" text="Заметка" />
+    <DatePicker fx:id="dayNotificationsField" editable="false" layoutX="16.0" layoutY="159.0" prefHeight="26.0" prefWidth="287.0" />
+    <Label fx:id="titleError" layoutX="370.0" layoutY="6.0" textFill="#f80000" />
+   <TextField fx:id="category" editable="false" layoutX="14.0" layoutY="331.0" prefHeight="26.0" prefWidth="291.0" />
+</AnchorPane>

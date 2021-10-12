@@ -82,9 +82,6 @@ public class ControllerMain implements Initializable {
         });
 
         shoppingList.getItems().clear();
-//        repository.getAllPurchase().stream().filter(p -> p.getDate() != null).forEach(p ->
-//                System.out.println(localDateMinimum.isBefore(p.getDate()) + " purchase: " + p.getDate() + ", date filter " + localDateMinimum)
-//        );
         repository.getAllPurchase()
                 .stream()
                 .filter(p -> p.isCompleted())

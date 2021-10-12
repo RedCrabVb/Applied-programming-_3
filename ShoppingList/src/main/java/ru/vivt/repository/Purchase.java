@@ -67,4 +67,8 @@ public class Purchase {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getNote() {
+        return note;
+    }
 }

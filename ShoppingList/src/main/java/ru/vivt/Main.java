@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main.fxml"));
-        primaryStage.setTitle("Physical Process Model");
+        primaryStage.setTitle("Покупки");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
