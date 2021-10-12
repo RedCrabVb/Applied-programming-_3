@@ -31,12 +31,7 @@ public class Repository {
         }
     }
 
-    public void addPurchase(String text, LocalDate date) {
-        Purchase purchase = new Purchase(currentId++, text, date);
-        listPurchase.add(purchase);
-    }
-
-    public void addPurchase(String header, LocalDate date, String price, String note, String category) {
+    public void addPurchase(String header, LocalDate date, Integer price, String note, String category) {
         Purchase purchase = new Purchase(currentId++, header, date);
         purchase.setPrice(price);
         purchase.setNote(note);

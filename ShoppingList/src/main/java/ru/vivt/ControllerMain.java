@@ -1,5 +1,6 @@
 package ru.vivt;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -44,8 +45,11 @@ public class ControllerMain implements Initializable {
     @FXML
     public ChoiceBox category;
 
+    @FXML
+    public Label titleCategory, titleShopping, titleError, titlePrice;
 
-    private LocalDate localDateMinimum;
+
+    private LocalDate localDateMinimum = LocalDate.now();
 
     private ObservableList<AnchorPane> listOfShoppingObservable,
             shoppingListDateObservable,
@@ -92,11 +96,11 @@ public class ControllerMain implements Initializable {
                 .filter(p -> localDateMinimum.isBefore(p.getDate()))
                 .forEach(p -> {
                     if (mapCategoryCount.containsKey(p.getCategory())) {
-                        mapCategoryCount.put(p.getCategory(), mapCategoryCount.get(p.getCategory()));
+                        mapCategoryCount.put(p.getCategory(), mapCategoryCount.get(p.getCategory()) + 1);
                     } else {
                         mapCategoryCount.put(p.getCategory(), 1);
                     }
-        });
+                });
         mapCategoryCount.keySet().forEach(k -> {
             pieChartShopping.getData().add(new PieChart.Data(k, mapCategoryCount.get(k)));
         });
@@ -122,20 +126,60 @@ public class ControllerMain implements Initializable {
         });
 
         addPurchase.setOnAction(e -> {
+            boolean error = false;
+            String normalText = "-fx-text-fill: black;";
+            String errorText = "-fx-text-fill: red;";
+            if (Optional.of(headerPurchaseFiled.getText()).orElseThrow().isEmpty()) {
+                titleShopping.setStyle(errorText);
+                error = true;
+            } else {
+                titleShopping.setStyle(normalText);
+            }
+
+            if (category.getValue() == null) {
+                titleCategory.setStyle(errorText);
+                error = true;
+            } else {
+                titleCategory.setStyle(normalText);
+            }
+
+            Integer price = 0;
+            try {
+                price = !priceFiled.getText().isEmpty() ? Integer.parseInt(priceFiled.getText()) : 0;
+                titlePrice.setStyle(normalText);
+            } catch (NumberFormatException numberFormatException) {
+                titlePrice.setStyle(errorText);
+                error = true;
+            }
+
+
+            if (error) {
+                titleError.setText("Ошибка при вводе данных");
+                return;
+            } else {
+                titleError.setText("");
+            }
+
             repository.addPurchase(
                     headerPurchaseFiled.getText(),
                     dayNotificationsField.getValue(),
-                    priceFiled.getText(),
+                    price,
                     noteFiled.getText(),
-                    Optional.of(category.getValue()).orElse("Без категории").toString()
+                    category.getValue().toString()
             );
+
+            headerPurchaseFiled.clear();
+            priceFiled.clear();
+            dayNotificationsField.setValue(null);
+            noteFiled.setText("");
+            category.setValue(null);
 
             listOfShoppingObservable.clear();
             updateList(localDateMinimum);
         });
 
 
-        category.setItems(FXCollections.observableArrayList(Arrays.asList("Автомобиль", "Дом", "Здоровье", "Личные расходы", "Одежда", "Питание", "Подарки", "Семейные расходы", "Техника", "Услуги")));
+        category.setItems(FXCollections.observableArrayList(Arrays.asList("Автомобиль", "Дом", "Здоровье", "Личные расходы", "Одежда")));
         //сортировка radioButton
         ToggleGroup toggleGroup = new ToggleGroup();
         dayButton.setToggleGroup(toggleGroup);
@@ -156,7 +200,7 @@ public class ControllerMain implements Initializable {
             updateList(LocalDate.now().minusYears(1));
         });
 
-        yearButton.setSelected(true);
+        dayButton.setSelected(true);
     }
 
     public void addItemsInShoppingList(ObservableList<AnchorPane> list, Purchase purchase) {

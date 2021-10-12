@@ -8,7 +8,7 @@ public class Purchase {
     private LocalDate date;
     private boolean completed;
 
-    private String price;
+    private Integer price;
     private String note;
     private String category;
 
@@ -48,11 +48,11 @@ public class Purchase {
         return id;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
