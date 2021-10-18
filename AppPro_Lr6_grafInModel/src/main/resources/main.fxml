@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="655.0" style="-fx-background-image: /home/redcrab/GitHub/Applied-programming-_3/SysPro_Lr4_graphics/src/main/resources/img/background\.jpeg;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vivt.MainController">
+    <children>
+        <AnchorPane layoutX="369.0" layoutY="22.0" prefHeight="214.0" prefWidth="232.0" style="-fx-background-color: #c3cbd3; -fx-border-width: 1px; -fx-border-color: black;">
+            <children>
+                <Label layoutX="80.0" layoutY="14.0" text="Фигуры" />
+                <RadioButton fx:id="circle" layoutX="69.0" layoutY="53.0" mnemonicParsing="false" text="Круг">
+               <font>
+                   <Font size="14.0" />
+               </font></RadioButton>
+                <RadioButton fx:id="square" layoutX="69.0" layoutY="91.0" mnemonicParsing="false" text="Квадрат">
+               <font>
+                  <Font size="14.0" />
+               </font></RadioButton>
+                <RadioButton fx:id="triangle" layoutX="68.0" layoutY="124.0" mnemonicParsing="false" text="Линия">
+               <font>
+                  <Font size="14.0" />
+               </font></RadioButton>
+                <Button fx:id="drawShapes" layoutX="57.0" layoutY="159.0" mnemonicParsing="false" text="Рисовать фигуру" />
+            </children>
+        </AnchorPane>
+        <Pane fx:id="planeShapes" layoutX="28.0" layoutY="22.0" prefHeight="345.0" prefWidth="303.0" style="-fx-background-color: #c3cbd3; -fx-border-width: 1px; -fx-border-color: black;" />
+
+    </children>
+</AnchorPane>
