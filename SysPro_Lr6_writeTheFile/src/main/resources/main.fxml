@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vivt.MainController">
+    <children>
+        <TabPane layoutX="8.0" layoutY="6.0" prefHeight="385.0" prefWidth="879.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Результаты">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="825.0">
+                     <children>
+                        <Button fx:id="generate" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" text="Сгенерировать" />
+                        <Button fx:id="load" layoutX="230.0" layoutY="23.0" mnemonicParsing="false" text="Загрузить" />
+                        <ListView fx:id="generatorList" layoutX="14.0" layoutY="76.0" prefHeight="255.0" prefWidth="205.0" />
+                        <ListView fx:id="loadList" layoutX="230.0" layoutY="76.0" prefHeight="256.0" prefWidth="197.0" />
+                        <ListView fx:id="filterList" layoutX="437.0" layoutY="76.0" prefHeight="258.0" prefWidth="422.0" />
+                        <ComboBox fx:id="select" layoutX="437.0" layoutY="23.0" prefWidth="150.0" />
+                        <Label fx:id="notFound" layoutX="437.0" layoutY="49.0" text="" />
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
