@@ -2,10 +2,14 @@ package ru.vivt.repository;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.*;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +20,10 @@ public class Repository {
 
     private static int currentId;
     private List<Purchase> listPurchase;
+
+    private final HttpClient httpClient = HttpClient.newBuilder()
+            .version(HttpClient.Version.HTTP_2)
+            .build();
 
     public Repository(String file) {
         this.file = file;
@@ -38,6 +46,7 @@ public class Repository {
         purchase.setCategory(category);
 
         listPurchase.add(purchase);
+        sendHttpRequest(purchase);
         save();
     }
 
@@ -63,4 +72,28 @@ public class Repository {
             e.printStackTrace();
         }
     }
+
+    private void sendHttpRequest(Purchase purchase) {
+        try {
+            String url = "http://localhost:8080/api?json=" + URLEncoder.encode(gson.toJson(purchase));
+            String urlParameters = "";
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .POST(HttpRequest.BodyPublishers.ofString(urlParameters))
+                    .uri(URI.create(url))
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .build();
+
+            HttpResponse<String> response = getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private HttpClient getHttpClient() {
+        return HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_2)
+                .build();
+    }
+
 }
