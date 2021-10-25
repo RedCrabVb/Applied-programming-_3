@@ -159,9 +159,11 @@ public class ControllerMain implements Initializable {
 
             if (error) {
                 titleError.setText("Ошибка при вводе данных");
+                titleError.setStyle(errorText);
                 return;
             } else {
                 titleError.setText("");
+                titleError.setStyle(normalText);
             }
 
             repository.addPurchase(
