@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<students>
+  <student id="1">
+    <group>ПКС-019</group>
+    <ball>2 4 4 4 5</ball>
+  </student>
+  <student id="2">
+    <group>ПКС-019</group>
+    <ball>4 4 5 4 4</ball>
+  </student>
+  <student id="3">
+    <group>ПКС-019</group>
+    <ball>2 5 3 3 3</ball>
+  </student>
+  <student id="4">
+    <group>ПКС-019</group>
+    <ball>4 3 3 2 4</ball>
+  </student>
+  <student id="5">
+    <group>ПКС-019</group>
+    <ball>2 4 4 3 3</ball>
+  </student>
+  <student id="6">
+    <group>ПКС-019</group>
+    <ball>5 2 5 5 5</ball>
+  </student>
+  <student id="7">
+    <group>ПКС-019</group>
+    <ball>3 3 5 4 2</ball>
+  </student>
+  <student id="8">
+    <group>ПКС-019</group>
+    <ball>2 5 3 2 2</ball>
+  </student>
+  <student id="9">
+    <group>ПКС-019</group>
+    <ball>3 5 5 2 5</ball>
+  </student>
+  <student id="10">
+    <group>ПКС-019</group>
+    <ball>5 5 3 5 2</ball>
+  </student>
+  <student id="11">
+    <group>ПКС-019</group>
+    <ball>2 5 3 3 4</ball>
+  </student>
+  <student id="12">
+    <group>ПКС-019</group>
+    <ball>3 3 3 2 4</ball>
+  </student>
+  <student id="13">
+    <group>ПКС-019</group>
+    <ball>4 2 4 4 3</ball>
+  </student>
+  <student id="14">
+    <group>ПКС-019</group>
+    <ball>5 4 4 4 3</ball>
+  </student>
+  <student id="15">
+    <group>ПКС-019</group>
+    <ball>5 5 5 5 5</ball>
+  </student>
+  <student id="16">
+    <group>ПКС-019</group>
+    <ball>5 4 4 3 5</ball>
+  </student>
+  <student id="17">
+    <group>ПКС-019</group>
+    <ball>2 3 2 3 4</ball>
+  </student>
+  <student id="18">
+    <group>ПКС-019</group>
+    <ball>2 5 2 4 5</ball>
+  </student>
+  <student id="19">
+    <group>ПКС-019</group>
+    <ball>2 3 4 4 5</ball>
+  </student>
+  <student id="20">
+    <group>ПКС-019</group>
+    <ball>5 2 2 4 4</ball>
+  </student>
+  <student id="21">
+    <group>ПКС-019</group>
+    <ball>3 4 4 3 5</ball>
+  </student>
+  <student id="22">
+    <group>ПКС-019</group>
+    <ball>4 3 3 4 3</ball>
+  </student>
+  <student id="23">
+    <group>ПКС-019</group>
+    <ball>2 4 5 2 2</ball>
+  </student>
+  <student id="24">
+    <group>ПКС-019</group>
+    <ball>4 2 2 2 4</ball>
+  </student>
+  <student id="25">
+    <group>ПКС-019</group>
+    <ball>2 3 3 2 5</ball>
+  </student>
+  <student id="26">
+    <group>ПКС-019</group>
+    <ball>2 5 5 2 3</ball>
+  </student>
+  <student id="27">
+    <group>ПКС-019</group>
+    <ball>3 4 2 2 2</ball>
+  </student>
+  <student id="28">
+    <group>ПКС-019</group>
+    <ball>5 3 5 5 4</ball>
+  </student>
+  <student id="29">
+    <group>ПКС-019</group>
+    <ball>4 4 5 5 3</ball>
+  </student>
+</students>
