@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="285.0" prefWidth="235.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.vivt.MainController">
+   <children>
+      <TextField fx:id="inputStr" layoutX="28.0" layoutY="39.0" />
+      <TextField fx:id="outputStr1" editable="false" layoutX="28.0" layoutY="108.0" />
+      <Label layoutX="28.0" layoutY="23.0" text="Input string" />
+      <Label layoutX="28.0" layoutY="83.0" text="Output 1 string" />
+      <TextField fx:id="outputStr2" editable="false" layoutX="28.0" layoutY="174.0" />
+      <Label layoutX="28.0" layoutY="147.0" text="Output 2 string" />
+      <Button fx:id="runTransform" layoutX="28.0" layoutY="226.0" mnemonicParsing="false" text="Run transformation" />
+   </children>
+</AnchorPane>
