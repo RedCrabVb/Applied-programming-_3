@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ru.vivt.MainController"
+            prefHeight="600.0" prefWidth="600.0">
+   <top>
+      <VBox>
+         <ToolBar>
+            <HBox alignment="CENTER" spacing="5">
+               <TextField fx:id="brushSize" text="18" />
+               <ColorPicker fx:id="colorPicker" />
+               <CheckBox fx:id="eraser" text="Eraser" />
+               <Button onAction="#onSave">Save</Button>
+               <Button onAction="#onLoad">Load</Button>
+            </HBox>
+         </ToolBar>
+      </VBox>
+   </top>
+
+   <center>
+      <Canvas fx:id="canvas" width="800" height="800" />
+   </center>
+</BorderPane>
